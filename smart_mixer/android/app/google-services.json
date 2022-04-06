@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "179991646174",
+    "project_id": "smart-mixer-tukorea-s4-6",
+    "storage_bucket": "smart-mixer-tukorea-s4-6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179991646174:android:fe065fb3156bf51466574f",
+        "android_client_info": {
+          "package_name": "kr.ac.tukorea.smartmixer.smart_mixer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179991646174-5tee6n7ma5m8uignop75jeahqanhvpdh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.ac.tukorea.smartmixer.smart_mixer",
+            "certificate_hash": "b6338488ccc7057dbb4c690617dd74c7565e4429"
+          }
+        },
+        {
+          "client_id": "179991646174-dlsmvpvamld4hjmkc017ijb6hvgv6bbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuVhxhb_4PKzr3akmAAybtJTYmUDV8zjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179991646174-dlsmvpvamld4hjmkc017ijb6hvgv6bbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
