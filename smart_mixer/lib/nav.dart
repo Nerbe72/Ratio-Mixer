@@ -45,17 +45,14 @@ class _NavBar extends State with SingleTickerProviderStateMixin{
           setState(() { });
         },
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 50, right: 50),
-        child: TabBarView(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: tabController,
-          children: [
-            RecipePage(),
-            HomePage(),
-            UserPage(),
-          ],
-        ),
+      body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: tabController,
+        children: [
+          RecipePage(),
+          HomePage(),
+          UserPage(),
+        ],
       ),
     );
   }

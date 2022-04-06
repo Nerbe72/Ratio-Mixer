@@ -10,6 +10,16 @@ Widget Logo() {
   );
 }
 
+Widget Logo2() {
+  return Column(
+    children: <Widget>[
+      Image.asset('asset/logo2.png', fit: BoxFit.fitWidth,),
+      Container( height: 10,),
+      Text('mixer that mixes the ratio', style: TextStyle(fontSize: 20, color: Colors.white,),),
+    ],
+  );
+}
+
 BoxDecoration textFieldBoxStyle = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(12.0)),
     gradient: LinearGradient(
