@@ -17,7 +17,7 @@ class _RecipePageState extends State<RecipePage> {
       backgroundColor: Color(0xFF272727),
       body: Padding(
         padding: const EdgeInsets.only(left: 40, right: 40, top: 50),
-        child: Column(
+        child: ListView(
           children: <Widget>[
             Logo2(),
             Container(height: 30,),

@@ -1,19 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
 
 import 'start.dart';
 import 'styles.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'SmartMixer Demo',
       theme: ThemeData(
         backgroundColor: Color(0xFF272727),
@@ -55,6 +59,17 @@ class _SplashPageState extends State<SplashPage> {
       duration: 2000,
     );
   }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  dispose() async {
+    super.dispose();
+  }
+
 }
 
 

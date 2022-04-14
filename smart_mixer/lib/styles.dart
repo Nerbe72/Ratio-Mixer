@@ -21,12 +21,12 @@ Widget Logo2() {
 }
 
 BoxDecoration textFieldBoxStyle = BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-    gradient: LinearGradient(
-      colors: [Colors.grey, Color(0xFF272727)],
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-    )
+  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+  gradient: LinearGradient(
+    colors: [Colors.grey, Color(0xFF272727)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  ),
 );
 
 InputDecoration textFieldStyle = InputDecoration(

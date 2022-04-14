@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 
 import 'home.dart';
