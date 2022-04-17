@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_mixer/start.dart';
+
 
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -15,6 +18,17 @@ class _UserPageState extends State<UserPage> {
       body: Column(
         children: <Widget>[
           Container(height: 50,),
+          Text('사용자 명', style: TextStyle(color: Colors.white, fontSize: 20),),
+          TextButton(
+              onPressed: () {
+                try {
+                  FirebaseAuth.instance.signOut();
+                } catch (e){  }
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => StartPage()));
+              },
+              child: Text('로그아웃')
+          ),
           Text('사용자', style: TextStyle(color: Colors.white),),
         ],
       ),

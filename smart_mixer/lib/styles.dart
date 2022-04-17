@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group_button/group_button.dart';
 
 Widget Logo() {
   return Column(
@@ -43,4 +44,8 @@ InputDecoration textFieldStyle = InputDecoration(
     borderSide: BorderSide(color: Colors.deepPurple),
     borderRadius: BorderRadius.all(Radius.circular(12.0)),
   ),
+);
+
+final gController = GroupButtonController(
+    selectedIndex: 0
 );

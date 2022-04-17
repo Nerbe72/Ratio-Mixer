@@ -37,7 +37,8 @@ class _StartPageState extends State<StartPage> {
       if(FirebaseAuth.instance.currentUser == null) {
         Get.off(() => const SignTempPage());
       } else {
-        Get.off(NavBar());
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => NavBar()));
       }
     });
   }

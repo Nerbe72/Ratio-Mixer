@@ -53,7 +53,7 @@ class _SignInPageState extends State<SignInPage> {
 
               //Id 입력
               Container(height: 30,),
-              Text('ID 입력', style: TextStyle(color: Colors.white, fontSize: 15),),
+              Text('이메일 입력', style: TextStyle(color: Colors.white, fontSize: 15),),
               Container(
                 decoration: textFieldBoxStyle,
                 child: TextFormField(
@@ -115,7 +115,8 @@ class _SignInPageState extends State<SignInPage> {
                 ],
               ),
 
-
+              //todo : 구글 로그인
+              //todo : 비밀번호 찾기
             ],
           ),
         ),

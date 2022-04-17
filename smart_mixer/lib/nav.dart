@@ -29,7 +29,7 @@ class _NavBar extends State with SingleTickerProviderStateMixin{
         ],
 
         activeIcons: const [
-          Icon(Icons.favorite, color: Colors.redAccent, size: 30,),
+          ImageIcon(AssetImage('asset/cocktail.png'), color: Colors.purple, size: 30,),
           Icon(Icons.home, color: Colors.blueAccent, size: 30,),
           Icon(Icons.account_circle, color: Colors.orangeAccent, size: 30,),
         ],
