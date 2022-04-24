@@ -17,13 +17,13 @@ class _SignTempPageState extends State<SignTempPage> {
   Widget build(BuildContext context) {
     //로그인/회원가입 화면
     return Scaffold(
-      backgroundColor: Color(0xFF272727),
+      backgroundColor: defaultBlack,
       body: Padding(
         padding: EdgeInsets.fromLTRB(50, 50, 50, 10),
         child: Column(
           children: <Widget>[
             Logo(),
-            Container(height: 100,),
+            Container(height: 80,),
 
             //기존회원
             OutlinedButton(

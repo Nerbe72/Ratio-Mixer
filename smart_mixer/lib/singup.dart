@@ -128,6 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Container(
                         decoration: textFieldBoxStyle,
                         child: TextFormField(
+                          obscureText: true,
                           controller: passwordCheckController,
                           style: TextStyle(fontSize: 25),
                           validator: (v) {
@@ -165,11 +166,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     borderRadius: BorderRadius.all(Radius.circular(30.0)),
                                   )),
                               onPressed: () {
-                                try {
-                                  _signup();
-                                } catch (e) {
-                                  //todo : 로그인 실패
-                                }
+                                _signup();
                               },
                             ),
                           ),
@@ -189,8 +186,14 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> _signup() async {
     if (!_formKey.currentState!.validate()) {
       return;
-    } else {
+    }
+    if (passwordController.text != passwordCheckController.text){
+      return;
+    }
+    try {
       _formKey.currentState!.save();
+
+      FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
       
       showDialog(context: context, builder: (BuildContext bc) {
         return AlertDialog(
@@ -198,17 +201,16 @@ class _SignUpPageState extends State<SignUpPage> {
           actions: [
             Center(
               child: FlatButton(onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => StartPage()));
+                Navigator.popUntil(context, ModalRoute.withName('/start'));
               },child: Text('확인'),),
             ),
           ],
         );
       });
-    }
-    if (passwordController.text != passwordCheckController.text){
+    } catch (e) {
 
     }
+
 
   }
 }

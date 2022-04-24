@@ -58,7 +58,7 @@ class _SignInPageState extends State<SignInPage> {
                 decoration: textFieldBoxStyle,
                 child: TextFormField(
                   controller: _emailController,
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: 25, color: Colors.white),
                   validator: (v) {
                     setState(() {
                       if (v!.isEmpty) {
@@ -123,9 +123,6 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-
-
-
 
 
   void initState() { super.initState(); }

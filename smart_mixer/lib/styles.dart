@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 
+String DB_URL = "https://smart-mixer-tukorea-s4-6-default-rtdb.firebaseio.com/";
+
 Widget Logo() {
   return Column(
     children: <Widget>[
@@ -49,3 +51,5 @@ InputDecoration textFieldStyle = InputDecoration(
 final gController = GroupButtonController(
     selectedIndex: 0
 );
+
+Color defaultBlack = Color(0xFF272727);
