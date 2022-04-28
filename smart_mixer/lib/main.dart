@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'SmartMixer Demo',
       theme: ThemeData(
         backgroundColor: Color(0xFF272727),

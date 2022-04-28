@@ -63,6 +63,7 @@ class ConnectionPage extends StatelessWidget {
                       }
 
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "재료를 우측부터 순서대로 연결해주세요",
@@ -97,7 +98,7 @@ class ConnectionPage extends StatelessWidget {
                             children: <Widget>[
                               Expanded(
                                 child: TextButton(
-                                  child: Text("start", style: TextStyle(color: Colors.white, fontSize: 25),),
+                                  child: Text("제작", style: TextStyle(color: Colors.white, fontSize: 25),),
                                   style: TextButton.styleFrom(
                                     backgroundColor: Color(0xFF536FFC),
                                     shape: const RoundedRectangleBorder(

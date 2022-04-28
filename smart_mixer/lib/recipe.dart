@@ -53,7 +53,7 @@ class _RecipePageState extends State<RecipePage> {
                   width: 400,
                   color: Colors.black,
                   child: Text(
-                    '슬라이드 카드 형식으로 추천',
+                    ' ',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

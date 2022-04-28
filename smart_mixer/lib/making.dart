@@ -60,6 +60,7 @@ class _MakingPageState extends State<MakingPage> {
                           children: [
                             Image.asset("asset/bottle_open.png"),
                             Text('재료를 주입중입니다.', style: TextStyle(color: Colors.white, fontSize: 20),),
+                            CircularProgressIndicator(),
                           ],
                         ),
                       );

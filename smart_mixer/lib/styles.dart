@@ -33,6 +33,7 @@ BoxDecoration textFieldBoxStyle = BoxDecoration(
 );
 
 InputDecoration textFieldStyle = InputDecoration(
+  hoverColor: Colors.white,
   isDense: true,
   contentPadding: EdgeInsets.only(left: 12,top: 8,bottom: 8),
   border: const OutlineInputBorder(

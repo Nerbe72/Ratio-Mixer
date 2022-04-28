@@ -81,16 +81,15 @@ class _SignInPageState extends State<SignInPage> {
                 decoration: textFieldBoxStyle,
                 child: TextFormField(
                   controller: _passwordController,
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: 25, color: Colors.white),
                   obscureText: true,
                   validator: (v) {
-                    setState(() {
-                      if (v!.isEmpty) {
-                        passwdError = '비밀번호를 입력해주세요.';
-                      } else {
-                        passwdError = '';
-                      }
-                    });
+                    if (v!.isEmpty) {
+                      passwdError = '비밀번호를 입력해주세요.';
+                    } else {
+                      passwdError = '';
+                    }
+                    setState(() {});
                   },
                   cursorColor: Colors.white,
                   decoration: textFieldStyle,
@@ -145,7 +144,7 @@ class _SignInPageState extends State<SignInPage> {
         Get.offAll(() => NavBar());
       } on FirebaseAuthException catch (e) {
         String message = '';
-        if(e.code == 'user-not--found') {
+        if(e.code == 'user-not-found') {
           message = '등록된 회원 정보가 없습니다.';
         } else if (e.code == 'invalid-email') {
           message = '등록되지 않은 이메일입니다.';
