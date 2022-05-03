@@ -11,8 +11,11 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
+
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       backgroundColor: Color(0xFF272727),
       body: Column(
@@ -23,13 +26,15 @@ class _UserPageState extends State<UserPage> {
               onPressed: () {
                 try {
                   FirebaseAuth.instance.signOut();
-                } catch (e){  }
+                } on FirebaseAuthException catch (e){
+
+                }
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => StartPage()));
               },
               child: Text('로그아웃')
           ),
-          Text('사용자', style: TextStyle(color: Colors.white),),
+          Text(user!.uid.toString(), style: TextStyle(color: Colors.white),),
         ],
       ),
     );
