@@ -5,6 +5,8 @@ import 'package:smart_mixer/making.dart';
 
 import 'styles.dart';
 
+List<String> ingredients = [];
+
 class ConnectionPage extends StatelessWidget {
   final name;
 
@@ -77,6 +79,13 @@ class ConnectionPage extends StatelessWidget {
                               itemCount:
                                   streamSnapshot.data!.child(name).children.length,
                               itemBuilder: (context, index) {
+                                ingredients.add(streamSnapshot.data!
+                                    .child(name)
+                                    .children
+                                    .elementAt(index)
+                                    .key
+                                    .toString());
+
                                 return Container(
                                   alignment: Alignment.center,
                                   child: Text(
@@ -110,6 +119,21 @@ class ConnectionPage extends StatelessWidget {
                                     Navigator.push(context, MaterialPageRoute(builder: (context) => MakingPage(name: name)));
                                     var entry = {name:{'s':0}};
                                     FirebaseDatabase.instance.refFromURL(DB_URL).child("Queue").set(entry);
+
+                                    if (ingredients.length <4) {
+                                      for (var i = 0; i<4-ingredients.length; i++){
+                                        ingredients.add('null');
+                                      }
+                                    }
+
+                                    var ingredient_list = {
+                                      'pump_1': {'name': "Pump 1", 'pin':12, 'value': ingredients[0]},
+                                      'pump_2': {'name': "Pump 2", 'pin':16, 'value': ingredients[1]},
+                                      'pump_3': {'name': "Pump 3", 'pin':20, 'value': ingredients[2]},
+                                      'pump_4': {'name': "Pump 4", 'pin':21, 'value': ingredients[3]},
+                                    };
+                                    FirebaseDatabase.instance.refFromURL(DB_URL).child("push").set(ingredient_list);
+
                                   },
                                 ),
                               ),

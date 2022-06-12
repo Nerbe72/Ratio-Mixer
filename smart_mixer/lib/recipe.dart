@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group_button/group_button.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:word_break_text/word_break_text.dart';
@@ -133,65 +132,7 @@ class _RecipePageState extends State<RecipePage> {
                           }
 
                           //개별 카드
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ConnectionPage(name: data.elementAt(index).key.toString())));
-                            },
-                            child: Container(
-                              constraints: BoxConstraints(
-                                minHeight: 50,
-                                maxHeight: 100,
-                              ),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Colors.white.withAlpha(950),
-                                        Color(0xFF7742FA),
-                                      ])),
-                              child: Padding(
-                                padding: const EdgeInsets.all(1.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    color: Color(0xFF626262),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          //todo : 이미지 삽입
-                                          constraints: BoxConstraints(
-                                            minHeight: 70,
-                                            minWidth: 70,
-                                            maxHeight: 90,
-                                            maxWidth: 90,
-                                          ),
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 95,
-                                        alignment: Alignment.center,
-                                        child: WordBreakText(
-                                          nullableString(data, index),
-                                          spacingByWrap: true,
-                                          wrapAlignment: WrapAlignment.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
+                          return iterateCard(data, index, context);
                         },
                       );
                     },
@@ -208,13 +149,6 @@ class _RecipePageState extends State<RecipePage> {
 
 Widget CocktailItem(int id, String title, String? image) {
   return Container();
-}
-
-String nullableString(Iterable<DataSnapshot> data, int index) {
-  if (data.length == 0) {
-    return "";
-  }
-  return data.elementAt(index).key.toString();
 }
 
 int selectedLength(GroupButtonController groupButtonController,
