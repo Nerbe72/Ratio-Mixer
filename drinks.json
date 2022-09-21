@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "smart-mixer-tukorea-s4-6",
+  "private_key_id": "58fc21c9ee48a011166dd6d208d3574dd29300b1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCiO0G5JA23/C0g\nS713ySWEDSElYTs6n3d1FePnGZTXabyd1KefCJF3pmgxzGl3CgTFAT6dsYCHCFdj\nVTz23AXkCB55nYFVxmMRxJ8C2cvT3wJKg6Y0aoE2e9UwhzWkLQnvVoOjHBBQrqlQ\n5zpGC9YJ+XqMPht8rABTgg5BD1NOnK7xRsl7MuO7OJNp7tXZqUoOLSi0Yzw73kJy\nysOm9AjGtBZpBT4DFzcbh/hkgkycZuvduh5ChxKoRmlTW9/FsCGW1cCuKxub/aHe\nyquOKjx6v6LUpJLNTmX30j1p+MLpj8zufH16JD4MkzLdgZW28KiEeSpR/UVrrlYz\n0Abaqzs1AgMBAAECggEAGcuLQTlq1wDJWhPA7g11IiCGTy+9H66ga2UOJj5KjM/a\ntkvMVTyjCJ/UfGqQsGVO6dYvUxqYoZ/haUFx3pyQcTgbRGIXYQCY2wfk8qqXvrn8\nXsW9BSOUJQoelUdCb7bbmAstBh/dtj53XI5PlTinkVFyO19atoGQ0bZhttWNfPeq\nqF76j6ztOjTkm1f3Z2t4hYJY8eOCtlFBNHsu7hmwSKmJxDETtl7pwhRcrTRjoj26\nZMViwJBNjoT3IHbP2vUdpEj3lsZLt377Anv3Wc6jo2gscdCLB+D3oZT0661dmoxe\nZsmE/WtLZz7VhqhiwdzpKwft9V7yP+G7mcMum6xu0QKBgQDi9XVne5M044oWgiaK\nvS7PFaJ9Fey/xnB4jdNsnCkB6LEhRpXj7YmzZ9VbxKqg0opEnc6MVbhQrzsDQEDy\nqrB2PZOhZYhV4qj4CTABOEUBy7kHWv4mRyW4j2MUmL8qAxnnyI7QQ06Op/RFtmVB\nS4f+BJ6vmVtPKyk5wpdjZe1+WQKBgQC2/YJ5s6zguPIDyNODsRZJE2vQvwPg+oiQ\n6vaXyAquwvFxbOa5oFpgCw4LMtl7DoesQukWk1iAbrtkkMRFS1KXuNuhxwkhfJWF\nIdkq8voQN/RSJKLtSy+a4hy5lktKdcXGm4twVrpYsf0Vua3nQzBIuW+dBYeS9OQZ\nhNfifHEgPQKBgH5IuiT0e7poCYPws2VrUspjbWBQfMVQs3BA6i16zs6DHVw4nFqQ\n55ft5KgFTDPkMo9vh2hKoh4zApEShZEBLOL97FFX3356ei5ZXl6vYqZXJwNSvCus\nVu7UyfrB60yDITz5OY3khaeXCLJphPnJ/0d2Zp2qpUXt7Ch5gCcMphMxAoGBAJNs\nc/SWk73MYnY4EmfzgI/JDMB1U6uqS+Hs2lP3/ttDBP+ri8qa7JSZ82uEQQBJ+XYH\nxf/BH7kA/QoNM4LcJyNC8/dHAg0vcMp8NZjLfjkYy0Zua7CfNTAj4J6H/gp0Da1v\nXQxZYvHYG5yoJfm+AKVmeAxaCxqTHz2L791xAjbFAoGAaC1/rrcnKWPf+pAz2w8z\nqhMHUsNNGRavrpsVQahlMHN0YCvY7PAENRu39Uj4ceXjm1sVORjb3R2SieUsk5HU\n9TfHp3kjtlnANAY7gHsAIoV8H+OfYM07PwW2s9NOQ/DbM+H9dQWOkp+Z++SKGCGX\nuhmBwcd/0P7t3/qI6S8jumY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-vcxw8@smart-mixer-tukorea-s4-6.iam.gserviceaccount.com",
+  "client_id": "110914035541779365254",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vcxw8%40smart-mixer-tukorea-s4-6.iam.gserviceaccount.com"
+}
