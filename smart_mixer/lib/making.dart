@@ -10,6 +10,8 @@ class MakingPage extends StatefulWidget {
   final name;
   MakingPage({@required this.name});
 
+  static const routeName = "/making_page";
+
   @override
   State<MakingPage> createState() => _MakingPageState();
 }
@@ -23,13 +25,19 @@ class _MakingPageState extends State<MakingPage> {
     FirebaseDatabase.instance.refFromURL(DB_URL).child("Queue");
 
     snapshot.onChildRemoved.listen((event) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FinishPage()));
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => FinishPage()));
     });
 
+    Future.delayed(Duration(milliseconds: 5000));
+
     return WillPopScope(
+
       onWillPop: () {
-        Fluttertoast.showToast(msg: "제작 완료까지 뒤로가기가 금지됩니다.");
-        return Future(() => false); }, //뒤로가기 방지
+        return Future(()=> true);
+        // Fluttertoast.showToast(msg: "제작 완료까지 뒤로가기가 금지됩니다.");
+        // return Future(() => false); }, //뒤로가기 방지
+      },
       child: Scaffold(
         backgroundColor: defaultBlack,
         body: Container(
@@ -42,7 +50,7 @@ class _MakingPageState extends State<MakingPage> {
                 textAlign: TextAlign.center,
               ),
               Container(
-                height: 500,
+                height: 600,
                 alignment: Alignment.center,
                 child: StreamBuilder<DataSnapshot>(
                   stream: snapshot.get().asStream(),
@@ -52,15 +60,18 @@ class _MakingPageState extends State<MakingPage> {
                         height: 100,
                       );
                     }
-
-                    if (streamSnapshot.data!.hasChild(name)){
+                    if (streamSnapshot.data!.hasChild("pump_1")){
                       return Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset("asset/bottle_open.png"),
-                            Text('재료를 주입중입니다.', style: TextStyle(color: Colors.white, fontSize: 20),),
-                            CircularProgressIndicator(),
+                            SizedBox(
+                              height: 300,
+                              width: 300,
+                              child: Lottie.asset("asset/loading.json", repeat: false,),
+                            ),
+                            Container(height: 10,),
+                            Text('장치의 버튼을 눌러주세요', style: TextStyle(color: Colors.white, fontSize: 20),),
                           ],
                         ),
                       );

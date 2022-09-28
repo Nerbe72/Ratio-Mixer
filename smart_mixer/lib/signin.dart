@@ -140,6 +140,10 @@ class _SignInPageState extends State<SignInPage> {
           email: _emailController.text,
           password: _passwordController.text,
         );
+        // if (FirebaseDatabase.instance.refFromURL(DB_URL).child("log").child(FirebaseAuth.instance.currentUser!.uid.toString()).get().isBlank == true) {
+        //   var ingred_set = {};
+        //   FirebaseDatabase.instance.refFromURL(DB_URL).child("log").child(FirebaseAuth.instance.currentUser!.uid.toString()).set(ingred_set);
+        // }
 
         Get.offAll(() => NavBar());
       } on FirebaseAuthException catch (e) {

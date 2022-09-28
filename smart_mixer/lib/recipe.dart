@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:group_button/group_button.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:word_break_text/word_break_text.dart';
 
 import 'styles.dart';
 import 'connect.dart';
@@ -44,18 +43,6 @@ class _RecipePageState extends State<RecipePage> {
             child: Column(
               children: <Widget>[
                 Logo2(),
-                Container(
-                  height: 30,
-                ),
-                Container(
-                  height: 200,
-                  width: 400,
-                  color: Colors.black,
-                  child: Text(
-                    ' ',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
                 Container(
                   height: 20,
                 ),

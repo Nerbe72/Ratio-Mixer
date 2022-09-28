@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'styles.dart';
 
@@ -43,6 +44,18 @@ class _HomePageState extends State<HomePage> {
                               Text('칵테일 믹서', style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
                               Text('Cocktail mixer', style: TextStyle(color: Colors.orange, fontSize: 25),),
                               Text('COCKTAIL', style: TextStyle(color: Colors.grey, fontSize: 40, fontFamily: 'mmd'),),
+                              Visibility(
+                                visible: false,
+                                maintainSize: false,
+                                maintainState: true,
+                                maintainAnimation: false,
+                                maintainInteractivity: false,
+                                child: Row(
+                                  children: [
+                                    Lottie.asset("asset/pour.json"),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),

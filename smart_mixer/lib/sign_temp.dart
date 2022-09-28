@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'styles.dart';
 import 'singup.dart';
 import 'signin.dart';
-import 'nav.dart';
 
 class SignTempPage extends StatefulWidget {
   const SignTempPage({Key? key}) : super(key: key);
@@ -83,16 +81,6 @@ class _SignTempPageState extends State<SignTempPage> {
                 );
               },
             ),
-
-            //디버깅용
-            OutlinedButton(
-              onPressed: () {
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => NavBar()),
-                );
-              },
-              child: Text('디버깅용..', style: TextStyle(fontSize: 15, color: Colors.white),),),
-
           ],
         ),
       ),

@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import 'styles.dart';
-import 'start.dart';
 import 'sign_temp.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -241,6 +239,7 @@ class _SignUpPageState extends State<SignUpPage> {
         showDialog(
           context: context,
           builder: (BuildContext bc) {
+
             return AlertDialog(
               content: Text('회원가입이 완료되었습니다!'),
               actions: [

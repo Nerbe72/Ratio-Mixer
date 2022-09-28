@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:word_break_text/word_break_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'connect.dart';
+import 'user_connection.dart';
 
 String DB_URL = "https://smart-mixer-tukorea-s4-6-default-rtdb.firebaseio.com/";
 
@@ -70,6 +72,11 @@ final recommendController = GroupButtonController(
   selectedIndex: 0
 );
 
+class SliderController {
+  double sliderValue;
+  SliderController(this.sliderValue);
+}
+
 Color defaultBlack = Color(0xFF272727);
 
 String? nullableString(Iterable<DataSnapshot>? data, int index) {
@@ -80,6 +87,7 @@ String? nullableString(Iterable<DataSnapshot>? data, int index) {
 }
 
 InkWell iterateCard(Iterable<DataSnapshot>? data, int index,BuildContext context){
+
   return InkWell(
     onTap: () {
       Navigator.push(context, MaterialPageRoute(builder: (context) => ConnectionPage(name: data!.elementAt(index).key.toString())));
@@ -134,6 +142,81 @@ InkWell iterateCard(Iterable<DataSnapshot>? data, int index,BuildContext context
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+InkWell logCard(Iterable<DataSnapshot>? data, int index,BuildContext context){
+
+  DatabaseReference log_snapshot =
+  FirebaseDatabase.instance.refFromURL(DB_URL).child("log").child(FirebaseAuth.instance.currentUser!.uid.toString());
+
+  int log_length;
+  Iterable<DataSnapshot> name_list;
+
+  return InkWell(
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    onTap: () {
+      log_snapshot.child(data!.elementAt(index).key.toString()).onValue.listen((DatabaseEvent event){
+        Navigator.push(context, MaterialPageRoute(builder: (context)
+        => UserConnectionPage(name: data.elementAt(index).key.toString(), log_length: event.snapshot.children.length, log_list: event.snapshot.children)));
+      });
+    },
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 12),
+      child: Container(
+        constraints: BoxConstraints(
+          minHeight: 40,
+          maxHeight: 80,
+        ),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.white.withAlpha(950),
+                  Color(0xFF7742FA),
+                ],),),
+        child: Padding(
+          padding: const EdgeInsets.all(1.0),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: Color(0xFF626262),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Container(
+                    width: 95,
+                    alignment: Alignment.center,
+                    child: WordBreakText(
+                      nullableString(data, index) ?? "",
+                      spacingByWrap: true,
+                      wrapAlignment: WrapAlignment.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: (Text((data?.elementAt(index).child("time").value).toString(), style: TextStyle(fontSize: 20, color: Colors.white),)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

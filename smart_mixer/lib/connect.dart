@@ -2,10 +2,16 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_mixer/making.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import 'styles.dart';
 
 List<String> ingredients = [];
+List<int> ingredients_amount = [];
+List<SliderController> sliders = [];
+Map<String, int> ingredient_set = {};
 
 class ConnectionPage extends StatelessWidget {
   final name;
@@ -16,6 +22,14 @@ class ConnectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     DatabaseReference snapshot =
         FirebaseDatabase.instance.refFromURL(DB_URL).child("cocktail recipe");
+    ingredients.clear();
+    ingredients_amount.clear();
+
+    //init 초기화
+    ingredient_set.removeWhere((key, value) => true);
+    sliders.removeWhere((element) => true);
+    // ingredients.removeWhere((element) => true);
+    // ingredients_amount.removeWhere((element) => true);
 
     return NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (overScroll) {
@@ -42,7 +56,7 @@ class ConnectionPage extends StatelessWidget {
                 ),
                 Container(
                   child: StreamBuilder<DataSnapshot>(
-                    stream: snapshot.get().asStream(),
+                    stream:  snapshot.get().asStream(),
                     builder: (context, streamSnapshot) {
                       if (streamSnapshot.connectionState ==
                           ConnectionState.waiting) {
@@ -68,35 +82,94 @@ class ConnectionPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "재료를 우측부터 순서대로 연결해주세요",
+                            "재료의 비율을 설정해주세요",
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
 
                           Container(
                             alignment: Alignment.center,
-                            height: 300,
+                            height: 640,
                             child: ListView.builder(
                               itemCount:
                                   streamSnapshot.data!.child(name).children.length,
                               itemBuilder: (context, index) {
-                                ingredients.add(streamSnapshot.data!
+
+                                ingredient_set.addAll(
+                                    {streamSnapshot.data!.child(name).children.elementAt(index).key.toString()
+                                        : int.parse(streamSnapshot.data!.child(name).children.elementAt(index).value.toString())} as Map<String , int>);
+                                sliders.add(SliderController(double.parse(streamSnapshot.data!
                                     .child(name)
                                     .children
                                     .elementAt(index)
-                                    .key
-                                    .toString());
+                                    .value.toString())));
 
                                 return Container(
                                   alignment: Alignment.center,
-                                  child: Text(
-                                    streamSnapshot.data!
-                                            .child(name)
-                                            .children
-                                            .elementAt(index)
-                                            .key
-                                            .toString(),
-                                    style:
-                                        TextStyle(color: Colors.white, fontSize: 30),
+                                  child: Column(
+                                    children: [
+                                      Container(height: 30,),
+                                      Text(
+                                        streamSnapshot.data!
+                                                .child(name)
+                                                .children
+                                                .elementAt(index)
+                                                .key
+                                                .toString(),
+                                        style: TextStyle(color: Colors.white, fontSize: 30),
+                                      ),
+                                      StatefulBuilder(
+                                        builder: (BuildContext context, void Function(void Function()) SBsetState) {
+                                          return Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Flexible(
+                                                  fit: FlexFit.tight,
+                                                  child: SfSliderTheme(
+                                                    data: SfSliderThemeData(
+                                                      tickSize: Size(5, 5),
+                                                      thumbColor: Colors.white,
+                                                      activeLabelStyle: TextStyle(color: Colors.white, fontSize: 12, fontStyle: FontStyle.normal),
+                                                      inactiveLabelStyle: TextStyle(color: Colors.white, fontSize: 12, fontStyle: FontStyle.normal),
+                                                    ),
+                                                    child: SfSlider(
+                                                      value: sliders[index].sliderValue,
+                                                      min: 10,
+                                                      max: 150,
+                                                      interval: 20,
+                                                      showLabels: true,
+                                                      enableTooltip: true,
+                                                      showDividers: true,
+                                                      stepSize: 5,
+                                                      onChanged: (dynamic value) {
+                                                        SBsetState(()=>sliders[index].sliderValue = double.parse(value.toStringAsFixed(0)));
+                                                        ingredient_set[ingredient_set.keys.elementAt(index)] = sliders[index].sliderValue.toInt();
+                                                      },
+                                                    ),
+                                                  ),
+                                              ),
+                                              Container(
+                                                width: 55,
+                                                child: Text(
+                                                  int.parse(sliders[index].sliderValue.toStringAsFixed(0)).toString(),
+                                                  style: TextStyle(color: Colors.white, fontSize: 30),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                                child: Container(
+                                                  width: 35,
+                                                  child: Text(
+                                                    "ml",
+                                                    style: TextStyle(color: Colors.white, fontSize: 30),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    ],
                                   ),
                                 );
                               },
@@ -107,7 +180,7 @@ class ConnectionPage extends StatelessWidget {
                             children: <Widget>[
                               Expanded(
                                 child: TextButton(
-                                  child: Text("제작", style: TextStyle(color: Colors.white, fontSize: 25),),
+                                  child: Text("다음", style: TextStyle(color: Colors.white, fontSize: 25),),
                                   style: TextButton.styleFrom(
                                     backgroundColor: Color(0xFF536FFC),
                                     shape: const RoundedRectangleBorder(
@@ -115,25 +188,36 @@ class ConnectionPage extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    Navigator.pop(context);
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => MakingPage(name: name)));
-                                    var entry = {name:{'s':0}};
-                                    FirebaseDatabase.instance.refFromURL(DB_URL).child("Queue").set(entry);
+                                    // var entry_sub = {};
+                                    // for (var i = 0; i<ingredients.length; i++){
+                                    //   entry_sub.addAll({ingredients[i]: ingredients_amount[i]});
+                                    // }
+                                    // var entry = {name: entry_sub};
+                                    //
+                                    // FirebaseDatabase.instance.refFromURL(DB_URL).child("Queue").set(entry);
 
-                                    if (ingredients.length <4) {
-                                      for (var i = 0; i<4-ingredients.length; i++){
-                                        ingredients.add('null');
+                                    if (ingredient_set.length <4) {
+                                      for (var i = 0; i<=4-ingredient_set.length; i++){
+                                        ingredient_set.addAll({'null_'+i.toString(): 0} as Map<String , int>);
                                       }
                                     }
 
-                                    var ingredient_list = {
-                                      'pump_1': {'name': "Pump 1", 'pin':12, 'value': ingredients[0]},
-                                      'pump_2': {'name': "Pump 2", 'pin':16, 'value': ingredients[1]},
-                                      'pump_3': {'name': "Pump 3", 'pin':20, 'value': ingredients[2]},
-                                      'pump_4': {'name': "Pump 4", 'pin':21, 'value': ingredients[3]},
+                                    if (ingredient_set.length == 4){
+                                      var ingredient_list = { 'name': name,
+                                        'user': FirebaseAuth.instance.currentUser?.uid.toString(),
+                                        'pump_1': ingredient_set.values.elementAt(0),
+                                        'pump_2': ingredient_set.values.elementAt(1),
+                                        'pump_3': ingredient_set.values.elementAt(2),
+                                        'pump_4': ingredient_set.values.elementAt(3)};
+                                      FirebaseDatabase.instance.refFromURL(DB_URL).child("Queue").set(ingredient_list);
                                     };
-                                    FirebaseDatabase.instance.refFromURL(DB_URL).child("push").set(ingredient_list);
 
+                                    print(ingredient_set);
+
+                                    // FirebaseDatabase.instance.refFromURL(DB_URL).child("log").child(FirebaseAuth.instance.currentUser!.uid.toString()).push().set({name:""});
+
+                                    Navigator.pop(context);
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => MakingPage(name: name)));
                                   },
                                 ),
                               ),

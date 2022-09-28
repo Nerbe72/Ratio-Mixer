@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,19 +44,17 @@ class _SplashPageState extends State<SplashPage> {
     return AnimatedSplashScreen(
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Color(0xFF272727),
-      splashIconSize: (ScreenUtil.defaultSize.height/3)*2,
+      splashIconSize: (ScreenUtil.defaultSize.height/4)*2,
       splash: Padding(
         padding: EdgeInsets.only(left: 50, right: 50),
           child: Column(
             children: <Widget>[
               Logo(),
-              Container( height: 150,),
-              CircularProgressIndicator(color: Colors.orange, backgroundColor: Colors.blueAccent,),
             ],
           ),
         ),
       nextScreen: StartPage(),
-      duration: 2000,
+      duration: 950,
     );
   }
 
