@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.ac.tukorea.smartmixer.smart_mixer">
    <application
-        android:label="smart_mixer"
+        android:label="Smart Mixer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
